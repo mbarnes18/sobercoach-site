@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delete Your Account — Sober Coach</title>
+<meta name="description" content="How to delete your Sober Coach account and all associated data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sage:        #7A9E87;
+    --sage-light:  #A8C4B0;
+    --sage-dark:   #5A7D68;
+    --sage-mist:   #EDF3EF;
+    --linen:       #F2EFE9;
+    --linen-warm:  #EBE6DC;
+    --linen-deep:  #DDD6C8;
+    --earth:       #8B7355;
+    --earth-light: #B09A7A;
+    --earth-dark:  #5C4A30;
+    --gold:        #C4A55A;
+    --gold-light:  #E8D5A3;
+    --charcoal:    #2C2C2A;
+    --warm-white:  #FAFAF7;
+
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body:    'DM Sans', system-ui, sans-serif;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --radius-xl: 36px;
+    --radius-full: 999px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--linen);
+    color: var(--charcoal);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── Grain overlay ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  /* ── Nav ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(242,239,233,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(221,214,200,0.5);
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .nav-mark {
+    width: 36px; height: 36px;
+    background: var(--sage);
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-wordmark {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--earth-dark);
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .nav-cta {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+    background: var(--sage);
+    padding: 10px 22px;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.15s ease;
+    letter-spacing: 0.01em;
+  }
+  .nav-cta:hover { background: var(--sage-dark); transform: translateY(-1px); }
+
+  /* ── Page header ── */
+  .page-header {
+    padding: 140px 40px 72px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .page-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--earth-light);
+    background: var(--linen-warm);
+    border: 1px solid var(--linen-deep);
+    padding: 7px 16px;
+    border-radius: var(--radius-full);
+    margin-bottom: 32px;
+  }
+  .page-title {
+    font-family: var(--font-display);
+    font-size: clamp(44px, 7vw, 72px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--earth-dark);
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .page-title em {
+    font-style: italic;
+    color: var(--sage-dark);
+  }
+  .page-sub {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--earth);
+    line-height: 1.75;
+    max-width: 560px;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    height: 1px;
+    background: var(--linen-deep);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* ── Content ── */
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 64px 40px 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  /* ── Method cards ── */
+  .methods-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 640px) {
+    .methods-grid { grid-template-columns: 1fr; }
+  }
+
+  .method-card {
+    background: var(--warm-white);
+    border-radius: var(--radius-lg);
+    padding: 32px 28px 28px;
+    border: 1px solid var(--linen-deep);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .method-card.primary {
+    border-color: rgba(122,158,135,0.35);
+    background: var(--sage-mist);
+  }
+
+  .method-icon {
+    width: 44px; height: 44px;
+    background: var(--linen-warm);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .method-card.primary .method-icon {
+    background: rgba(122,158,135,0.18);
+  }
+
+  .method-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--earth-light);
+    margin-bottom: 4px;
+  }
+  .method-card.primary .method-label { color: var(--sage-dark); }
+
+  .method-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--earth-dark);
+    line-height: 1.2;
+  }
+
+  .method-body {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--earth);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  .method-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    background: var(--sage);
+    padding: 12px 22px;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+  .method-action:hover { background: var(--sage-dark); transform: translateY(-1px); }
+
+  .method-note {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--earth-light);
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+
+  /* ── Section ── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3.5vw, 34px);
+    font-weight: 300;
+    color: var(--earth-dark);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+  }
+  h2 em { font-style: italic; color: var(--sage-dark); }
+
+  p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--earth);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── Data list ── */
+  .data-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: var(--warm-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--linen-deep);
+    overflow: hidden;
+    margin-top: 8px;
+  }
+
+  .data-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--linen-warm);
+  }
+  .data-item:last-child { border-bottom: none; }
+
+  .data-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--sage);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .data-item-content strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--earth-dark);
+    margin-bottom: 2px;
+  }
+  .data-item-content span {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--earth);
+    line-height: 1.6;
+  }
+
+  /* ── Warning box ── */
+  .warning {
+    background: #FEF7ED;
+    border: 1px solid #F5C97A;
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .warning-icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .warning p {
+    font-size: 14px;
+    color: #7A5A1E;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--earth-dark);
+    border-top: 1px solid rgba(250,250,247,0.06);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .footer-wordmark {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(250,250,247,0.7);
+  }
+  footer p {
+    font-size: 12px;
+    color: rgba(250,250,247,0.3);
+    letter-spacing: 0.04em;
+    margin: 0;
+  }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+  .footer-links a {
+    font-size: 12px;
+    color: rgba(250,250,247,0.4);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: rgba(250,250,247,0.7); }
+  .footer-links a.active { color: rgba(250,250,247,0.65); }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .page-header { padding: 120px 24px 56px; }
+    .content { padding: 48px 24px 80px; gap: 40px; }
+    footer { padding: 32px 24px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-mark">
+      <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
+        <ellipse cx="16" cy="26" rx="5" ry="2.5" fill="rgba(255,255,255,0.45)"/>
+        <ellipse cx="16" cy="19.5" rx="4.5" ry="2.5" fill="rgba(255,255,255,0.65)"/>
+        <ellipse cx="16" cy="13.5" rx="3.5" ry="2" fill="rgba(255,255,255,0.85)"/>
+        <ellipse cx="16" cy="8.5" rx="2.5" ry="1.8" fill="white"/>
+      </svg>
+    </div>
+    <span class="nav-wordmark">Sober Coach</span>
+  </a>
+  <a href="/#apply" class="nav-cta">Apply for Beta →</a>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-eyebrow">Account</div>
+  <h1 class="page-title">Delete your <em>account</em></h1>
+  <p class="page-sub">You can request deletion of your account and all associated data at any time. Your recovery is yours — and so is the decision to leave.</p>
+</div>
+
+<div class="divider"></div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- How to delete -->
+  <div class="reveal">
+    <div class="section-label">How to delete your account</div>
+    <div class="methods-grid">
+
+      <!-- Email method (primary) -->
+      <div class="method-card primary">
+        <div class="method-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5A7D68" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="method-label">Available now</div>
+          <div class="method-title">Email us directly</div>
+        </div>
+        <p class="method-body">Send an email from the address associated with your account. We'll confirm the deletion and process it within 30 days.</p>
+        <a href="mailto:admin@sobercoach.app?subject=Delete%20My%20Account" class="method-action">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email admin@sobercoach.app
+        </a>
+        <p class="method-note">Use subject line: <strong>Delete My Account</strong></p>
+      </div>
+
+      <!-- In-app method (coming soon) -->
+      <div class="method-card">
+        <div class="method-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B09A7A" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <div>
+          <div class="method-label">Coming soon</div>
+          <div class="method-title">In the app</div>
+        </div>
+        <p class="method-body">Once available, you'll be able to delete your account directly from the app: <strong>Profile → Delete Account</strong>. Deletion will be instant and permanent.</p>
+        <p class="method-note" style="margin-top: auto;">This option will be available in an upcoming update.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- What gets deleted -->
+  <div class="reveal">
+    <h2>What gets <em>deleted</em></h2>
+    <p>When your account is deleted, all of the following is permanently removed from our systems. There is no way to recover this data after deletion is complete.</p>
+    <div class="data-list">
+      <div class="data-item">
+        <div class="data-dot"></div>
+        <div class="data-item-content">
+          <strong>Account information</strong>
+          <span>Your name, email address, and login credentials.</span>
+        </div>
+      </div>
+      <div class="data-item">
+        <div class="data-dot"></div>
+        <div class="data-item-content">
+          <strong>Sobriety history</strong>
+          <span>Your sobriety date, milestones, step work progress, and recovery profile.</span>
+        </div>
+      </div>
+      <div class="data-item">
+        <div class="data-dot"></div>
+        <div class="data-item-content">
+          <strong>Check-ins</strong>
+          <span>All daily check-in entries, mood records, journal notes, and gratitude logs.</span>
+        </div>
+      </div>
+      <div class="data-item">
+        <div class="data-dot"></div>
+        <div class="data-item-content">
+          <strong>Chat messages</strong>
+          <span>Your complete conversation history with Coach.</span>
+        </div>
+      </div>
+      <div class="data-item">
+        <div class="data-dot"></div>
+        <div class="data-item-content">
+          <strong>Supporter connections</strong>
+          <span>All linked supporters and their associated sharing permissions and digest history.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Warning -->
+  <div class="reveal">
+    <div class="warning">
+      <div class="warning-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C4851A" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <p><strong>Deletion is permanent.</strong> Once your account is deleted, your data cannot be recovered. If you're uncertain, you can pause your subscription without deleting your account — email us and we can help.</p>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="reveal">
+    <h2>Timeline and <em>confirmation</em></h2>
+    <p>After you submit a deletion request by email, we'll send a confirmation within one business day. Your data will be permanently deleted within 30 days of that confirmation.</p>
+    <p>If you have an active subscription, it will be canceled as part of the deletion process. You won't be charged again after the deletion is confirmed.</p>
+    <p>Questions or need help with something else? Email <a href="mailto:admin@sobercoach.app" style="color: var(--sage-dark); font-weight: 500;">admin@sobercoach.app</a> — we're a small team and we respond personally.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="/" class="footer-logo">
+    <div class="nav-mark">
+      <svg width="18" height="18" viewBox="0 0 32 32" fill="none">
+        <ellipse cx="16" cy="26" rx="5" ry="2.5" fill="rgba(255,255,255,0.45)"/>
+        <ellipse cx="16" cy="19.5" rx="4.5" ry="2.5" fill="rgba(255,255,255,0.65)"/>
+        <ellipse cx="16" cy="13.5" rx="3.5" ry="2" fill="rgba(255,255,255,0.85)"/>
+        <ellipse cx="16" cy="8.5" rx="2.5" ry="1.8" fill="white"/>
+      </svg>
+    </div>
+    <span class="footer-wordmark">Sober Coach</span>
+  </a>
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/delete-account.html" class="active">Delete Account</a>
+    <a href="mailto:admin@sobercoach.app">Contact</a>
+  </div>
+  <p>© 2026 Sober Coach · sobercoach.app</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+  reveals.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
