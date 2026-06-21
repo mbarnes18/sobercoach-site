@@ -3,11 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sober Coach — Your Recovery Companion</title>
-<meta name="description" content="Recovery support for people coming home from treatment — and the families who love them. Always here. Now accepting beta applications.">
-<meta property="og:title" content="Sober Coach — Your Recovery Companion">
-<meta property="og:description" content="Always here. Recovery support for the first 90 days and beyond.">
-<meta property="og:url" content="https://sobercoach.app">
+<title>AI Recovery Support App for Individuals & Families | Sober Coach</title>
+<meta name="description" content="Sober Coach is an AI recovery support app with 24/7 coaching, daily check-ins, safety escalation, and permission-based updates for families.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://sobercoach.app/">
+<meta name="theme-color" content="#7A9E87">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sober Coach">
+<meta property="og:title" content="AI Recovery Support for Individuals & Families | Sober Coach">
+<meta property="og:description" content="24/7 AI recovery support, flexible daily check-ins, safety escalation, and permission-based updates for families.">
+<meta property="og:url" content="https://sobercoach.app/">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AI Recovery Support for Individuals & Families | Sober Coach">
+<meta name="twitter:description" content="24/7 recovery support for people returning home from treatment and the families who support them.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://sobercoach.app/#organization",
+      "name": "Sober Coach",
+      "url": "https://sobercoach.app/",
+      "email": "admin@sobercoach.app",
+      "description": "Sober Coach develops AI-powered recovery support for people returning home from treatment and their families."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://sobercoach.app/#website",
+      "url": "https://sobercoach.app/",
+      "name": "Sober Coach",
+      "publisher": { "@id": "https://sobercoach.app/#organization" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://sobercoach.app/#app",
+      "name": "Sober Coach",
+      "applicationCategory": "HealthApplication",
+      "applicationSubCategory": "Recovery support",
+      "operatingSystem": "iOS, Android",
+      "url": "https://sobercoach.app/",
+      "description": "An AI-powered recovery support app with 24/7 coaching, daily check-ins, safety escalation, and permission-based family updates.",
+      "publisher": { "@id": "https://sobercoach.app/#organization" },
+      "offers": {
+        "@type": "Offer",
+        "price": "10.00",
+        "priceCurrency": "USD",
+        "description": "$10 per month after the introductory period"
+      },
+      "featureList": [
+        "24/7 AI recovery coaching",
+        "Flexible daily recovery check-ins",
+        "Four-level safety escalation framework",
+        "Permission-based recovery updates for family supporters"
+      ]
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -727,6 +783,52 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ── Search-focused FAQ ── */
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 48px;
+  }
+  .faq-item {
+    background: var(--warm-white);
+    border: 1px solid var(--linen-deep);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+  }
+  .faq-item h3 {
+    font-family: var(--font-display);
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--earth-dark);
+    margin-bottom: 12px;
+  }
+  .faq-item p {
+    color: var(--earth);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .faq-item a, .trust-note a { color: var(--sage-dark); }
+  .trust-note {
+    max-width: 760px;
+    margin-top: 30px;
+    color: var(--earth);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-links a {
+    color: rgba(250,250,247,0.65);
+    font-size: 12px;
+    text-decoration: none;
+  }
+  .footer-links a:hover { color: var(--warm-white); }
+
+  @media (max-width: 700px) {
+    .faq-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -750,7 +852,7 @@
 <!-- HERO -->
 <div class="hero">
   <h1 class="hero-headline anim-2">
-    Always here.<br><em>Whatever the hour.</em>
+    AI recovery support.<br><em>Whatever the hour.</em>
   </h1>
 
   <p class="hero-sub anim-3">
@@ -806,7 +908,7 @@
   <div class="reveal">
     <div class="section-eyebrow">How it works</div>
     <h2 class="section-headline">Recovery support that<br><em>actually shows up</em></h2>
-    <p class="section-body">The first 90 days after leaving treatment are statistically the highest-risk period for relapse. Sober Coach puts structured, human-feeling support in your pocket — and keeps your family meaningfully connected without being intrusive.</p>
+    <p class="section-body">Returning home from treatment can create a gap between structured care and everyday life. Sober Coach puts consistent, human-feeling recovery support in your pocket — and keeps your family meaningfully connected without being intrusive.</p>
   </div>
   <div class="features-grid">
     <div class="feature-card reveal">
@@ -849,9 +951,9 @@
       <div class="section-eyebrow">For the person in recovery</div>
       <h2 class="section-headline">A mirror,<br>not a<em> lecture</em></h2>
       <p class="section-body">Coach reflects back what's actually going on — without glossing it over, without moralizing. It knows the difference between a hard day and a crisis, and it responds accordingly.</p>
-      <p class="section-body" style="margin-top: 16px;">7-day free trial, then $10/month. Or have a family member cover it — they can pay for your subscription and receive email updates on your recovery at your discretion.</p>
+      <p class="section-body" style="margin-top: 16px;">Three months free, then $10/month. People discharged from a partner treatment center receive six months free. Or have a family member cover it — they can pay for your subscription and receive email updates on your recovery at your discretion.</p>
       <div class="badge-row">
-        <span class="badge"><span class="badge-dot"></span> 7-day free trial</span>
+        <span class="badge"><span class="badge-dot"></span> 3 months free</span>
         <span class="badge"><span class="badge-dot"></span> iOS &amp; Android</span>
         <span class="badge"><span class="badge-dot"></span> Available 24/7</span>
       </div>
@@ -908,6 +1010,36 @@
       <p class="section-body" style="margin-top: 16px;">LegitScript certification — the healthcare marketing compliance credential required by serious recovery platforms — is in progress.</p>
     </div>
   </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RECOVERY SUPPORT FAQ -->
+<section id="questions" aria-labelledby="questions-title">
+  <div class="reveal">
+    <div class="section-eyebrow">Common questions</div>
+    <h2 class="section-headline" id="questions-title">What is an AI<br><em>recovery support app?</em></h2>
+    <p class="section-body">An AI recovery support app offers on-demand reflection, check-ins, and practical encouragement between conversations with a person's real-world support network. Sober Coach is designed for people returning home from drug or alcohol treatment and for the family members supporting them. It complements professional care, peer support, sponsors, and trusted people; it does not replace them.</p>
+  </div>
+  <div class="faq-grid">
+    <article class="faq-item reveal">
+      <h3>Who is Sober Coach for?</h3>
+      <p>Sober Coach is being built for adults returning home from drug or alcohol treatment and for family supporters who want to stay meaningfully connected. The current beta is focused on learning from people in the early months after treatment.</p>
+    </article>
+    <article class="faq-item reveal">
+      <h3>How does the AI recovery coach help?</h3>
+      <p>The coach provides a private place to talk, reflect on a difficult stretch, complete a daily check-in, and identify useful next steps. It is available at any hour while encouraging connection with sponsors, clinicians, family, and emergency resources when human help is needed.</p>
+    </article>
+    <article class="faq-item reveal">
+      <h3>What can family supporters see?</h3>
+      <p>Family updates are permission-based. The person in recovery chooses what can be shared, who receives it, and can revoke access. Supporters receive narrative email updates rather than access to private conversations or an in-app monitoring feed.</p>
+    </article>
+    <article class="faq-item reveal">
+      <h3>Is Sober Coach treatment or crisis care?</h3>
+      <p>No. Sober Coach is a recovery support tool, not medical treatment, therapy, diagnosis, or emergency care. In the United States, call or text <a href="https://988lifeline.org/" rel="external">988</a> for immediate crisis support, or call 911 when there is immediate danger.</p>
+    </article>
+  </div>
+  <p class="trust-note reveal">Sober Coach is designed to complement established recovery support. For treatment information and referrals in the United States, visit the <a href="https://www.samhsa.gov/find-help/helplines/national-helpline" rel="external">SAMHSA National Helpline</a>. Last reviewed June 21, 2026.</p>
 </section>
 
 <!-- BETA APPLICATION FORM -->
@@ -998,6 +1130,11 @@
     <span class="footer-wordmark">Sober Coach</span>
   </a>
   <p>© 2026 Sober Coach · sobercoach.app</p>
+  <div class="footer-links" aria-label="Legal and support links">
+    <a href="/privacy.html">Privacy</a>
+    <a href="/delete-account.html">Delete account</a>
+    <a href="mailto:admin@sobercoach.app">Contact</a>
+  </div>
 </footer>
 
 <script>

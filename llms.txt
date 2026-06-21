@@ -1,0 +1,16 @@
+# Sober Coach
+> Sober Coach is an AI-powered recovery support app for adults returning home from drug or alcohol treatment and the families who support them.
+
+## Primary page
+- [Sober Coach](https://sobercoach.app/): Product overview, safety approach, pricing, beta application, and common questions.
+
+## Trust and support
+- [Privacy Policy](https://sobercoach.app/privacy.html): How Sober Coach collects, uses, protects, and shares data.
+- [Account Deletion](https://sobercoach.app/delete-account.html): How users can delete their account and associated data.
+- [Contact](mailto:admin@sobercoach.app): Product and support inquiries.
+
+## Key facts
+- Sober Coach provides 24/7 AI-assisted reflection and daily recovery check-ins.
+- The product is designed to complement, not replace, professional treatment, peer support, sponsors, or emergency care.
+- Family updates require permission from the person in recovery.
+- Sober Coach is currently accepting applications for a closed beta.
