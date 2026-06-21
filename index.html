@@ -647,6 +647,16 @@
     line-height: 1.6;
   }
 
+  .form-error {
+    display: none;
+    margin: 14px 0 0;
+    color: #9E3F3F;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .form-error.visible { display: block; }
+
   /* Success state */
   .form-success {
     display: none;
@@ -966,6 +976,8 @@
 
         <button type="submit" class="form-submit" id="submitBtn">Submit Application</button>
 
+        <p class="form-error" id="formError" role="alert">We couldn't confirm your application was saved. Please try again or email admin@sobercoach.app.</p>
+
         <p class="form-note">We review every application personally. No spam, ever. Your information is only used to evaluate your application and communicate with you about the beta program.</p>
       </form>
     </div>
@@ -1002,18 +1014,23 @@
   reveals.forEach(el => io.observe(el));
 
   // ── Form submission ──
-  // INSTRUCTIONS: Replace the ACTION_URL below with your Google Apps Script
-  // web app URL (see setup instructions in the README section below).
-  // Until you set this up, submissions will be logged to the console only.
-  const FORM_ACTION_URL = 'https://script.google.com/macros/s/AKfycbyLNOb2RBPoPhj-FuwQualidZmwm5HGvGkEASor9gXvySevUOfEXnsAfkyR5YMWxEdB/exec';
+  const FORM_ACTION_URL = 'https://script.google.com/macros/s/AKfycbx3HF9qn_f2Gpz6_rD_iZGf7mZlq_CW7_ic_hofhUnfDM89rn6Ft_tAEeNcMvJo_y9grA/exec';
 
   document.getElementById('betaForm').addEventListener('submit', async function(e) {
     e.preventDefault();
+    if (!this.checkValidity()) {
+      this.reportValidity();
+      return;
+    }
+
     const btn = document.getElementById('submitBtn');
+    const error = document.getElementById('formError');
     btn.disabled = true;
     btn.textContent = 'Submitting…';
+    error.classList.remove('visible');
 
     const data = {
+      submissionId: crypto.randomUUID(),
       firstName:  document.getElementById('firstName').value,
       lastName:   document.getElementById('lastName').value,
       email:      document.getElementById('email').value,
@@ -1023,27 +1040,57 @@
       submittedAt: new Date().toISOString(),
     };
 
-    if (FORM_ACTION_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-      // Dev mode: log to console, show success
-      console.log('Beta application:', data);
-      showSuccess();
-      return;
-    }
-
     try {
       await fetch(FORM_ACTION_URL, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(data),
       });
+
+      const saved = await verifySubmission(data.submissionId);
+      if (!saved) throw new Error('Submission could not be verified');
+
       showSuccess();
     } catch (err) {
+      console.error('Beta application failed:', err);
       btn.disabled = false;
       btn.textContent = 'Submit Application';
-      alert('Something went wrong. Please try again or email us directly.');
+      error.classList.add('visible');
     }
   });
+
+  async function verifySubmission(submissionId) {
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      if (await checkSubmissionStatus(submissionId)) return true;
+      await new Promise(resolve => setTimeout(resolve, 500 * (attempt + 1)));
+    }
+    return false;
+  }
+
+  function checkSubmissionStatus(submissionId) {
+    return new Promise(resolve => {
+      const callbackName = `betaFormStatus_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+      const script = document.createElement('script');
+      let finished = false;
+
+      const finish = saved => {
+        if (finished) return;
+        finished = true;
+        clearTimeout(timeout);
+        delete window[callbackName];
+        script.remove();
+        resolve(saved);
+      };
+
+      const timeout = setTimeout(() => finish(false), 6000);
+      window[callbackName] = result => finish(Boolean(result && result.ok));
+      script.onerror = () => finish(false);
+      script.onload = () => setTimeout(() => finish(false), 0);
+      script.src = `${FORM_ACTION_URL}?action=status&submissionId=${encodeURIComponent(submissionId)}&callback=${callbackName}&cacheBust=${Date.now()}`;
+      document.head.appendChild(script);
+    });
+  }
 
   function showSuccess() {
     document.getElementById('betaForm').style.display = 'none';
@@ -1055,30 +1102,13 @@
 
 <!--
 ════════════════════════════════════════════════════
-SETUP INSTRUCTIONS
+FORM BACKEND
 ════════════════════════════════════════════════════
 
-STEP 1 — GOOGLE SHEETS BACKEND
-1. Create a new Google Sheet titled "Sober Coach Beta Applications"
-2. Add headers in row 1: First Name | Last Name | Email | Role | Timeframe | Why | Submitted At
-3. Go to Extensions → Apps Script
-4. Paste this code:
-
-function doPost(e) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  const data = JSON.parse(e.postData.contents);
-  sheet.appendRow([
-    data.firstName, data.lastName, data.email,
-    data.role, data.timeframe, data.why, data.submittedAt
-  ]);
-  return ContentService.createTextOutput('OK');
-}
-
-5. Deploy → New Deployment → Web App
-   - Execute as: Me
-   - Who has access: Anyone
-6. Copy the web app URL
-7. Replace 'https://script.google.com/macros/s/AKfycbyLNOb2RBPoPhj-FuwQualidZmwm5HGvGkEASor9gXvySevUOfEXnsAfkyR5YMWxEdB/exec' in this file with that URL
+Applications are stored in the Google Sheet named "Sober Coach Beta Applications"
+inside Sober Coach/03 Marketing. Its attached Apps Script handles writes and a
+read-after-write status check. The success state must only be shown after that
+status check confirms the unique submission ID exists in the sheet.
 
 STEP 2 — GITHUB PAGES (free hosting)
 1. Create a GitHub account if you don't have one
