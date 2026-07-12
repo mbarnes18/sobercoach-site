@@ -6,6 +6,7 @@
 
 ## Trust and support
 - [Privacy Policy](https://sobercoach.app/privacy.html): How Sober Coach collects, uses, protects, and shares data.
+- [Terms of Service](https://sobercoach.app/terms.html): Terms governing use of the app and related services.
 - [Account Deletion](https://sobercoach.app/delete-account.html): How users can delete their account and associated data.
 - [Contact](mailto:admin@sobercoach.app): Product and support inquiries.
 
