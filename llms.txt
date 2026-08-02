@@ -8,6 +8,7 @@
 - [Privacy Policy](https://sobercoach.app/privacy.html): How Sober Coach collects, uses, protects, and shares data.
 - [Terms of Service](https://sobercoach.app/terms.html): Terms governing use of the app and related services.
 - [Account Deletion](https://sobercoach.app/delete-account.html): How users can delete their account and associated data.
+- [Password Reset](https://sobercoach.app/reset-password.html): Browser bridge that opens the installed app to finish password recovery.
 - [Contact](mailto:admin@sobercoach.app): Product and support inquiries.
 
 ## Key facts
