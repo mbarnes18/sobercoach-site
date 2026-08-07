@@ -20,6 +20,13 @@
     .actions { display:grid; gap:12px; margin:24px 0; }
     a.button { display:block; padding:15px 18px; border-radius:10px; background:var(--sage); color:#fff; font-weight:700; text-align:center; text-decoration:none; }
     a.button.secondary { background:#fff; border:1px solid var(--sage); color:var(--sage); }
+    .android-request { margin:24px 0; padding:20px; border:1px solid #d8e3da; border-radius:12px; }
+    .android-request h2 { margin:0 0 8px; font-size:20px; }
+    .android-request label { display:block; margin:16px 0 6px; font-weight:700; }
+    .android-request input { width:100%; padding:13px 14px; border:1px solid #aebbb1; border-radius:9px; font:inherit; }
+    .android-request button { width:100%; margin-top:12px; padding:15px 18px; border:0; border-radius:10px; background:var(--sage); color:#fff; font:inherit; font-weight:700; cursor:pointer; }
+    .android-request .help { margin:8px 0 0; color:#566058; font-size:14px; }
+    .android-request .confirmation { margin:12px 0 0; color:var(--sage); font-weight:700; }
     small { display:block; color:#566058; }
   </style>
 </head>
@@ -33,17 +40,44 @@
       <h2>Choose your phone</h2>
       <ol>
         <li><strong>iPhone:</strong> install TestFlight if prompted, then join the Sober Coach test.</li>
-        <li><strong>Android:</strong> reply with the email currently selected in your Play Store account. You will receive access once that email is added to the private test.</li>
+        <li><strong>Android:</strong> request access below using the email currently selected in your Play Store account.</li>
       </ol>
     </section>
 
     <div class="actions">
       <a class="button" href="https://testflight.apple.com/join/bqWnX5BM">I have an iPhone</a>
-      <a class="button secondary" href="https://play.google.com/apps/testing/com.sobercoach.app">I have an Android</a>
     </div>
 
-    <p><strong>Android testers:</strong> after access is confirmed, open the Android link while signed into that same Play Store account, choose <em>Become a tester</em>, and install Sober Coach from Google Play. Please stay opted in for 14 days.</p>
+    <section class="android-request" aria-labelledby="android-access-heading">
+      <h2 id="android-access-heading">I have an Android</h2>
+      <p>Enter the email shown under your profile picture in the Google Play Store. We will add it to the private beta and get back to you when access is ready.</p>
+      <form id="android-access-form">
+        <label for="play-email">Google Play email</label>
+        <input id="play-email" name="play-email" type="email" inputmode="email" autocomplete="email" placeholder="you@gmail.com" required>
+        <button type="submit">Request Android beta access</button>
+      </form>
+      <p class="help">Not sure which email? Open the Play Store, tap your profile picture in the top right, and use the email shown there.</p>
+      <p class="confirmation" id="android-access-confirmation" hidden aria-live="polite"></p>
+    </section>
+
+    <p><strong>After access is confirmed:</strong> open the Android link while signed into that same Play Store account, choose <em>Become a tester</em>, and install Sober Coach from Google Play. Please stay opted in for 14 days.</p>
     <small>For feedback, reply to the person who invited you or email <a href="mailto:feedback@sobercoach.app">feedback@sobercoach.app</a>. Please include your phone model and a screenshot when useful, but do not send private recovery conversations or passwords.</small>
   </main>
+  <script>
+    const androidAccessForm = document.querySelector("#android-access-form");
+    const playEmail = document.querySelector("#play-email");
+    const confirmation = document.querySelector("#android-access-confirmation");
+
+    androidAccessForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!androidAccessForm.reportValidity()) return;
+
+      const subject = "Sober Coach Android beta access request";
+      const body = `Please add this Google Play account to the Sober Coach Android private beta:\n\n${playEmail.value}\n\nOnce access is ready, I will use the Android beta link to opt in and install the app.`;
+      window.location.href = `mailto:feedback@sobercoach.app?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      confirmation.hidden = false;
+      confirmation.textContent = "Your email app should open with the request filled in. Send it, then we will let you know when Android access is ready.";
+    });
+  </script>
 </body>
 </html>
